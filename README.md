@@ -13,8 +13,6 @@
 
 Tired of building OTP verification screens from scratch? Say goodbye to that frustration! **OTP Resend Timer** is here to make your life easier! 🚀
 
-![OTP Resend Timer Demo](https://via.placeholder.com/600x200/4CAF50/FFFFFF?text=OTP+Resend+Timer+Demo)
-
 ## 🌟 Features
 
 - ⏱️ **Flexible Timer** - Fully customizable countdown timer
