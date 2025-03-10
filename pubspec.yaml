@@ -1,0 +1,21 @@
+name: otp_resend_timer
+description: "Flutter widget that handle OTP resend functionality with customizable UI, animations, and callback support."
+version: 1.0.0
+repository: https://github.com/EmadBeltaje/otp_resend_timer
+homepage: https://github.com/EmadBeltaje/otp_resend_timer
+documentation: https://github.com/EmadBeltaje/otp_resend_timer#readme
+issue_tracker: https://github.com/EmadBeltaje/otp_resend_timer/issues
+topics: [flutter, dart, otp, animation, resend]
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0

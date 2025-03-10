@@ -1,0 +1,44 @@
+name: Publish Flutter Package
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+
+      - name: Install Dependencies
+        run: flutter pub get
+
+      - name: Format Code
+        run: flutter format .
+
+      - name: Run Tests
+        run: flutter test
+
+      - name: Validate Version
+        run: |
+          RELEASE_VERSION=$(echo ${{ github.ref }} | sed 's/refs\/tags\/v//')
+          PUBSPEC_VERSION=$(grep 'version:' pubspec.yaml | awk '{print $2}')
+          if [ "$RELEASE_VERSION" != "$PUBSPEC_VERSION" ]; then
+            echo "Version mismatch: Release version ($RELEASE_VERSION) does not match pubspec.yaml version ($PUBSPEC_VERSION)"
+            exit 1
+          fi
+
+      - name: Validate Package
+        run: dart pub publish --dry-run
+
+      - name: Publish to pub.dev
+        env:
+          PUB_DEV_TOKEN: ${{ secrets.PUB_DEV_TOKEN }}
+        run: echo "$PUB_DEV_TOKEN" | dart pub publish
